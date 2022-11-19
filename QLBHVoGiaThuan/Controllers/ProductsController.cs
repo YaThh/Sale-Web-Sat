@@ -39,16 +39,25 @@ namespace QLBHVoGiaThuan.Controllers
             try
             {
                 // TODO: Add insert logic here
-                p.SupplierID = int.Parse(collection["NCC"]);
-                p.CategoryID = int.Parse(collection["LSP"]);
-                da.Products.InsertOnSubmit(p);
-                da.SubmitChanges();
+                if (da.Products.FirstOrDefault(s => s.ProductName == p.ProductName) == null)
+                {
+                    p.SupplierID = int.Parse(collection["NCC"]);
+                    p.CategoryID = int.Parse(collection["LSP"]);
+                    da.Products.InsertOnSubmit(p);
+                    da.SubmitChanges();
 
-                return RedirectToAction("ListProduct");
+                    return RedirectToAction("ListProduct");
+                }
+                else
+                {
+                    return RedirectToAction("Create");
+                }
+
+               
             }
             catch
             {
-                return View();
+                return RedirectToAction("Create");
             }
         }
 
