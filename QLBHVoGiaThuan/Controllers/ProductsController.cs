@@ -1,6 +1,7 @@
 ﻿using QLBHVoGiaThuan.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -64,45 +65,60 @@ namespace QLBHVoGiaThuan.Controllers
         // GET: Products/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Product p = da.Products.FirstOrDefault(s => s.ProductID == id);
+            ViewData["NCC"] = new SelectList(da.Suppliers, "SupplierID", "CompanyName");
+            ViewData["LSP"] = new SelectList(da.Categories, "CategoryID", "CategoryName");
+            return View(p);
         }
 
         // POST: Products/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
-            try
-            {
+            
                 // TODO: Add update logic here
+                Product p = da.Products.FirstOrDefault(s => s.ProductID == id);
+                p.ProductName = collection["ProductName"];
+                p.UnitPrice = decimal.Parse(collection["UnitPrice"]);
+                p.UnitsInStock = short.Parse(collection["UnitsInStock"]);
+                p.CategoryID = int.Parse(collection["LSP"]);
+                p.SupplierID = int.Parse(collection["NCC"]);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                UpdateModel(p);
+                da.SubmitChanges();
+
+                return RedirectToAction("ListProducts");
+        
         }
 
         // GET: Products/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+            Product p = da.Products.FirstOrDefault(s => s.ProductID == id);
+            ViewData["NCC"] = new SelectList(da.Suppliers, "SupplierID", "CompanyName");
+            ViewData["LSP"] = new SelectList(da.Categories, "CategoryID", "CategoryName");
+            return View(p);
         }
 
         // POST: Products/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
+            // TODO: Add update logic here
+            Product p = da.Products.FirstOrDefault(s => s.ProductID == id);
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                da.Products.DeleteOnSubmit(p);
+                da.SubmitChanges();
             }
-            catch
+            catch (SqlException ex)
             {
-                return View();
+                ViewBag.EX = ex;
+                return RedirectToAction("Delete");
             }
+
+            return RedirectToAction("ListProducts");
         }
     }
 }
