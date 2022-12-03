@@ -51,42 +51,42 @@
         <classShapeMoniker Id="d8ec3076-6ba0-49df-95fd-5cd349490396" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.5008048502604); (7.25 : 13.5008048502604); (7.25 : 3.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 13.5008048502604); (7.25 : 13.5008048502604); (7.25 : 3.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Order/Order_Order_Detail" />
       <nodes>
         <classShapeMoniker Id="d1df62e0-5bfa-43f7-bcf9-f3b0f6d1d72e" />
         <classShapeMoniker Id="d074cd63-1ed9-42ce-84af-130f15f2d13e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 12.1498527018229); (3.5 : 12.1498527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 12.1498527018229); (3.5 : 12.1498527018229)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Customer/Customer_Order" />
       <nodes>
         <classShapeMoniker Id="01b50c7b-87c9-4344-b73d-9ad81a5ab122" />
         <classShapeMoniker Id="d1df62e0-5bfa-43f7-bcf9-f3b0f6d1d72e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 14.2508048502604); (3.5 : 14.2508048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 14.2508048502604); (3.5 : 14.2508048502604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Employee/Employee_Order" />
       <nodes>
         <classShapeMoniker Id="d8ec3076-6ba0-49df-95fd-5cd349490396" />
         <classShapeMoniker Id="d1df62e0-5bfa-43f7-bcf9-f3b0f6d1d72e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 2.38544840494792); (6.25 : 2.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 2.38544840494792); (6.25 : 2.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Product/Product_Order_Detail" />
       <nodes>
         <classShapeMoniker Id="d2969c78-8252-49a1-8d47-a35eb018e721" />
         <classShapeMoniker Id="d074cd63-1ed9-42ce-84af-130f15f2d13e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.28929768880208); (3.5 : 2.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.28929768880208); (3.5 : 2.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Category/Category_Product" />
       <nodes>
         <classShapeMoniker Id="066fcf27-0ec8-4804-83ee-cf1eadc55fe2" />
         <classShapeMoniker Id="d2969c78-8252-49a1-8d47-a35eb018e721" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.30850341796875); (4.5 : 6.30850341796875); (4.5 : 3.73240397135417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.30850341796875); (4.5 : 6.30850341796875); (4.5 : 3.73240397135417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NorthwindDataContext/Supplier/Supplier_Product" />
       <nodes>
         <classShapeMoniker Id="beee570a-7333-459e-b159-750d255dc678" />

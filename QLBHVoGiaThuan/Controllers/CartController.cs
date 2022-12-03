@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Transactions;
 
 namespace QLBHVoGiaThuan.Controllers
 {
     public class CartController : Controller
     {
         // GET: Cart
+        private NorthwindDataContext da = new NorthwindDataContext();
 
         public List<Cart> GetListCarts()
         {
@@ -54,6 +56,51 @@ namespace QLBHVoGiaThuan.Controllers
                 carts.RemoveAll(s => s == c);
             }
             return RedirectToAction("ListCarts");
+        }
+
+        public ActionResult OrderProduct()
+        {
+            int maDH;
+            using (TransactionScope tran = new TransactionScope())
+            {
+                try
+                {
+                    List<Cart> carts = GetListCarts();
+                    Order order = new Order();
+                    order.OrderDate = DateTime.Now;
+                    da.Orders.InsertOnSubmit(order);
+                    da.SubmitChanges();
+                    maDH = da.MaxOrder().Single().OrderID;
+
+                    foreach (var item in carts)
+                    {
+                        Order_Detail d = new Order_Detail();
+                        d.OrderID = maDH;
+                        d.ProductID = item.ProductID;
+                        d.UnitPrice = (decimal)item.UnitPrice;
+                        d.Quantity = (short)item.Quantity;
+                        d.Discount = 0;
+                        da.Order_Details.InsertOnSubmit(d);
+                    }
+                    da.SubmitChanges();
+                    tran.Complete();
+                    Session["Cart"] = null;
+                    return RedirectToAction("ListOrders", DateTime.Now.Date);
+                }
+                catch (Exception ex)
+                {
+                    tran.Dispose();
+                    return Content(ex.Message);
+                }
+            } 
+        }
+
+        public ActionResult ListOrders(DateTime? orderDate)
+        {
+            List<Order> ds = da.Orders.Where(s => s.OrderDate.ToString().Contains(orderDate.ToString()))
+                                      .OrderByDescending(s => s.OrderID)
+                                      .ToList();
+            return View(ds);
         }
     }
 }

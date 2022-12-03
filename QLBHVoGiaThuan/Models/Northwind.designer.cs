@@ -138,6 +138,13 @@ namespace QLBHVoGiaThuan.Models
 				return this.GetTable<Supplier>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MaxOrder")]
+		public ISingleResult<MaxOrderResult> MaxOrder()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<MaxOrderResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categories")]
@@ -2662,6 +2669,32 @@ namespace QLBHVoGiaThuan.Models
 		{
 			this.SendPropertyChanging();
 			entity.Supplier = null;
+		}
+	}
+	
+	public partial class MaxOrderResult
+	{
+		
+		private int _OrderID;
+		
+		public MaxOrderResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
+		public int OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					this._OrderID = value;
+				}
+			}
 		}
 	}
 }
